@@ -1,0 +1,17 @@
+{
+  "name": "grow-up-server",
+  "version": "1.0.0",
+  "description": "NodeJS server with step by step improvements",
+  "type": "module",
+  "private": "true",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamMalec/grow-up-server.git"
+  },
+  "author": "Adam Malec",
+  "license": "ISC"
+}
