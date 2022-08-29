@@ -11,11 +11,13 @@ if (cluster.isPrimary) {
   // Fork workers
   for (let i = 0; i < numCPUs - 1; i++) {
     const worker = cluster.fork();
-    worker.on('exit', (code, signal) => {
-      console.log(`Worker died! PID ${pid}`);
-      cluster.fork();
-    });
   }
+
+  cluster.on('exit', (code, signal) => {
+    console.log(`Worker died! PID ${pid}`);
+    cluster.fork();
+  });
+
 } else {
   worker();
 }
