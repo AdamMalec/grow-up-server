@@ -1,8 +1,10 @@
 import http from 'http';
+import { URL } from 'url';
 import fs from 'fs';
 
-const HOST = '127.0.0.1';
+const HOSTNAME = '127.0.0.1';
 const PORT = 3000;
+// HOST = `${HOSTNAME}:${PORT}`                    *-memento-*
 const pid = process.pid;
 
 const routeMap = {
@@ -14,10 +16,12 @@ const routeMap = {
 export const worker = () => {
   return http
     .createServer((request, response) => {
-      const url = request.url;
-      render(response, routeMap[url.slice(1)]);
-
-    }).listen(PORT, HOST, function () {
+      const requestURL = new URL(request.url, `http://${HOSTNAME}/`);
+      // standardize the requested url by removing any '/' at the start or end
+      // '/folder/to/file/' becomes 'folder/to/file'
+      let path = requestURL.pathname.replace(/^\/+|\/+$/g, '');
+      render(response, routeMap[path]);
+    }).listen(PORT, HOSTNAME, function () {
       console.log(`Worker started. PID: ${pid}`);
     });
 };
