@@ -13,5 +13,8 @@
     "url": "git+https://github.com/AdamMalec/grow-up-server.git"
   },
   "author": "Adam Malec",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nunjucks": "^3.2.3"
+  }
 }
