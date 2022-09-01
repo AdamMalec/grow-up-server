@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home page</title>
-</head>
-<body>
-  <h1>Here we go again NJK</h1>
-</body>
-</html>
+{% extends "_layout.njk" %}
+{% set title = 'Welcome' %}
+{% set page = 'home' %}
+{% block content %}
+    <div class="hero">
+        <div class="hero__container">
+            <h1>Starter Template with Nunjucks</h1>
+            <p>Don't forget to read<code>readme.md</code>:D</p>
+            <ul>
+                <li>Winter 0.12.2</li>
+                <li>Spring 4.11</li>
+            </ul>
+        </div>
+    </div>
+{% endblock content %}

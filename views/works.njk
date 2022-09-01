@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Works page</title>
-</head>
-<body>
-  <h1>Our works !!! NJK</h1>
-</body>
-</html>
+{% extends "_layout.njk" %}
+{% set title = 'in-page JS' %}
+{% set page = 'in-page-js' %}
+{% block content %}
+    <div class="row">
+        <p>
+            You may want to check the code in
+            <code>src/pages/in-page-js.html</code>
+            :)
+        </p>
+        <button id="click-me">Click me!</button>
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript">
+        $('#click-me').on('click', function () {
+            alert('Button clicked!');
+        });
+    </script>
+{% endblock %}
