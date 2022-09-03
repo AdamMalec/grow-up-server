@@ -1,23 +1,26 @@
 import http from 'http';
 import { URL } from 'url';
 import nunjucks from 'nunjucks';
+import * as dotenv from 'dotenv';
 
-const HOSTNAME = '127.0.0.1';
-const PORT = 3000;
+dotenv.config();
+const host = process.env.HOST;
+const port = process.env.PORT;
+
 const pid = process.pid;
 
 nunjucks.configure('views', { autoescape: true });
 
 const routeMap = {
   '': nunjucks.render('index.njk'),
-  'works': nunjucks.render('works.njk'),
+  'form': nunjucks.render('form.njk'),
   'about': nunjucks.render('about.njk'),
 }
 
 export const worker = () => {
   return http
     .createServer((req, res) => {
-      const requestURL = new URL(req.url, `http://${HOSTNAME}/`);
+      const requestURL = new URL(req.url, `http://${host}/`);
       // standardize the requested url by removing any '/' at the start or end
       // '/folder/to/file/' becomes 'folder/to/file'
       let path = requestURL.pathname.replace(/^\/+|\/+$/g, '');
@@ -29,7 +32,7 @@ export const worker = () => {
         res.statusCode = 404;
         res.end('Sorry, page not found!');
       }
-    }).listen(PORT, HOSTNAME, function () {
+    }).listen(port, host, function () {
       console.log(`Worker started. PID: ${pid}`);
     });
 };
